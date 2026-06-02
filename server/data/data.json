@@ -1,0 +1,52 @@
+{
+  "expenses": [
+    {
+      "id": "1",
+      "title": "Weekly groceries",
+      "amount": 87.45,
+      "category": "Food",
+      "date": "2026-05-28",
+      "note": "Supermarket run"
+    },
+    {
+      "id": "2",
+      "title": "Bus pass",
+      "amount": 45,
+      "category": "Transport",
+      "date": "2026-05-01",
+      "note": "Monthly transit card"
+    },
+    {
+      "id": "3",
+      "title": "Streaming subscription",
+      "amount": 15.99,
+      "category": "Entertainment",
+      "date": "2026-05-15",
+      "note": ""
+    },
+    {
+      "id": "4",
+      "title": "Electric bill",
+      "amount": 120.3,
+      "category": "Utilities",
+      "date": "2026-05-20",
+      "note": "May billing cycle"
+    },
+    {
+      "id": "5",
+      "title": "Running shoes",
+      "amount": 89,
+      "category": "Shopping",
+      "date": "2026-05-25",
+      "note": "Replacement pair"
+    },
+    {
+      "id": "a8dfdafb-a360-48f3-8b4e-1a305bc78f90",
+      "title": "Movies",
+      "amount": 500,
+      "category": "Entertainment",
+      "date": "2026-06-02",
+      "note": ""
+    }
+  ]
+}
