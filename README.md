@@ -1,67 +1,149 @@
-# Personal Expense Tracker
+# ExpenseSmart
 
-Full-stack personal expense tracker built for a time-boxed practical test.
+### Track Today, Save Tomorrow
 
-## What I Built (and Why)
+ExpenseSmart is a full-stack personal expense tracker built as part of a time-boxed software engineering practical test. The application enables users to manage daily expenses, analyze monthly spending patterns, and filter records efficiently through a simple and intuitive interface.
 
-This app supports the core “expense tracker” workflow end-to-end with a deliberately small surface area:
+---
 
-- **Add / Edit / Delete expenses**: A single-page UI that captures `title`, `amount`, `category`, `date`, and optional `note`.
-- **Validation on both client and server**: Prevents invalid data from ever being written to disk (important when using file storage).
-- **Filters (applied together)**: Category, title search (partial + case-insensitive), and a date range filter for quick review.
-- **Current-month summary**: A simple month-to-date view showing total spend and category breakdown, implemented via `reduce()`.
+## Features
 
-The goal was to deliver a reviewable, runnable submission quickly, without introducing extra frameworks or architecture that don’t add value in a practical test.
+### Expense Management
+
+* Add new expenses
+* Edit existing expenses
+* Delete expenses
+* Store expense details including:
+
+  * Title
+  * Amount
+  * Category
+  * Date
+  * Optional Note
+
+### Smart Filtering
+
+* Filter by category
+* Search by title (partial and case-insensitive)
+* Filter by date range (From / To)
+
+### Monthly Insights
+
+* Current month total spending
+* Category-wise spending breakdown
+* Empty-state handling when no expenses exist for the current month
+
+### Validation
+
+Client-side and server-side validation ensure only valid data is stored.
+
+Validation rules:
+
+* Title is required
+* Title cannot contain only spaces
+* Amount must be greater than 0
+* Category is required
+
+---
 
 ## Tech Stack
 
-- **Frontend:** React + Vite
-- **Backend:** Node.js + Express
-- **Storage:** JSON file (`server/data/data.json`)
+### Frontend
 
-## Why This Stack (and Tradeoffs)
+* React
+* Vite
 
-- **React + Vite**
-  - **Why:** Fast setup, fast local dev, minimal boilerplate for a coding assessment.
-  - **Tradeoff:** No SSR or advanced routing/state tooling included by default.
+### Backend
 
-- **Node.js + Express**
-  - **Why:** Simple REST API, predictable structure, quick to implement and debug.
-  - **Tradeoff:** Minimal architecture (no service/controller split) favors speed over long-term scalability.
+* Node.js
+* Express.js
 
-- **JSON file storage**
-  - **Why:** Zero external dependencies (no DB setup), easy local run and review.
-  - **Tradeoff:** Not suitable for concurrent multi-user writes, large datasets, or production-grade durability.
+### Storage
+
+* JSON File Storage (`server/data/data.json`)
+
+---
+
+## Why This Stack?
+
+This project was designed to be completed within a limited time while remaining easy to run and evaluate.
+
+### React + Vite
+
+**Why**
+
+* Fast development environment
+* Minimal configuration
+* Excellent developer experience
+
+**Tradeoff**
+
+* No advanced routing or state management libraries included
+
+### Node.js + Express
+
+**Why**
+
+* Lightweight REST API
+* Easy debugging and maintenance
+* Quick implementation
+
+**Tradeoff**
+
+* Simplified architecture focused on practicality rather than enterprise-scale patterns
+
+### JSON File Storage
+
+**Why**
+
+* No database setup required
+* Easy local execution
+* Simple data persistence
+
+**Tradeoff**
+
+* Not suitable for concurrent users or production-scale workloads
+
+---
 
 ## Project Structure
 
 ```text
 client/
-  src/
-    components/
-      ExpenseForm.jsx
-      ExpenseList.jsx
-      ExpenseItem.jsx
-      Filters.jsx
-      MonthlySummary.jsx
-    services/
-      api.js
-    App.jsx
-    App.css
-    main.jsx
+│
+├── src/
+│   ├── components/
+│   │   ├── ExpenseForm.jsx
+│   │   ├── ExpenseList.jsx
+│   │   ├── ExpenseItem.jsx
+│   │   ├── Filters.jsx
+│   │   └── MonthlySummary.jsx
+│   │
+│   ├── services/
+│   │   └── api.js
+│   │
+│   ├── App.jsx
+│   ├── App.css
+│   └── main.jsx
+│
 server/
-  data/
-    data.json
-  routes/
-    expenses.js
-  server.js
+│
+├── data/
+│   └── data.json
+│
+├── routes/
+│   └── expenses.js
+│
+└── server.js
 ```
 
-## How To Run (Exact Commands)
+---
 
-> Open **two terminals** from repository root (`d:\personal-tracker`).
+## Running the Application
 
-### 1) Start backend
+Open two terminals from the project root.
+
+### Start Backend
 
 ```powershell
 cd server
@@ -69,9 +151,13 @@ npm install
 npm run dev
 ```
 
-Backend runs on: `http://localhost:5000`
+Backend URL:
 
-### 2) Start frontend
+```text
+http://localhost:5000
+```
+
+### Start Frontend
 
 ```powershell
 cd client
@@ -79,80 +165,118 @@ npm install
 npm run dev
 ```
 
-Frontend runs on Vite default URL (usually): `http://localhost:5173`
+Frontend URL:
+
+```text
+http://localhost:5173
+```
+
+---
 
 ## API Endpoints
 
-Base URL: `http://localhost:5000/api/expenses`
+Base URL:
 
-- `GET /` - list all expenses
-- `POST /` - create expense
-- `PUT /:id` - update expense
-- `DELETE /:id` - delete expense
+```text
+http://localhost:5000/api/expenses
+```
 
-## Data Model
+| Method | Endpoint | Description           |
+| ------ | -------- | --------------------- |
+| GET    | /        | Retrieve all expenses |
+| POST   | /        | Create a new expense  |
+| PUT    | /:id     | Update an expense     |
+| DELETE | /:id     | Delete an expense     |
 
-Each expense uses this shape:
+---
+
+## Expense Data Model
 
 ```json
 {
-  "id": "uuid",
-  "title": "Weekly groceries",
-  "amount": 87.45,
+  "id": "1",
+  "title": "Grocery Shopping",
+  "amount": 1800,
   "category": "Food",
-  "date": "2026-05-28",
-  "note": "Optional text"
+  "date": "2026-06-02",
+  "note": "Monthly groceries"
 }
 ```
 
-## What Is Implemented
+---
 
-- End-to-end expense CRUD flow (client + server).
-- Form validation (client + server):
-  - title required
-  - title cannot be only spaces
-  - amount must be greater than 0
-  - category required
-- Filters in `App.jsx`:
-  - category
-  - title search (partial, case-insensitive)
-  - date range (from/to)
-- Filter-specific empty state:
-  - `"No expenses match the current filters."`
-- Global empty list state:
-  - `"No expenses found. Add your first expense."`
-- Monthly summary (current month only):
-  - total spent
-  - category-wise breakdown (`reduce`)
-  - empty-month state (`Total Spent: ₹0`, no-expenses message)
-- Responsive CSS layout with cards, styled forms, buttons, and spacing.
-- Basic backend resilience:
-  - missing `data.json` handled as empty dataset
-  - invalid JSON handled with safe error response
+## Implemented Functionality
 
-## What Was Intentionally Skipped (and Why)
+### Core Features
 
-- **Authentication/authorization**
-  - Skipped to keep scope aligned with a 2-hour practical.
-- **Database integration**
-  - JSON storage was chosen to avoid setup overhead and keep submission runnable instantly.
-- **Automated test suite**
-  - Manual edge-case verification was prioritized within time constraints.
-- **Advanced architecture**
-  - No separate controllers/services to keep code compact and assessment-friendly.
-- **State management library**
-  - React local state is sufficient for this app size.
+* Expense CRUD operations
+* Current month summary
+* Category-wise spending analysis
+* Date-descending expense listing
 
-## Known Rough Edges
+### Filtering
 
-- JSON file storage is single-node and not safe for heavy concurrent writes.
-- No schema validation library (validation is manual, in route/form logic).
-- No loading skeletons/toast notifications; status messages are minimal.
-- Error handling is practical but not fully standardized across all backend failure types.
-- No pagination/sorting controls beyond default date-desc listing.
+* Category filter
+* Title search
+* Date range filter
+
+### User Experience
+
+* Responsive layout
+* Styled cards and forms
+* Clear empty-state messages
+* Form validation feedback
+
+### Backend Reliability
+
+* Handles missing data file
+* Handles invalid JSON content safely
+* Prevents invalid data from being saved
+
+---
+
+## What Was Intentionally Skipped
+
+### Authentication
+
+Not required for the assessment and intentionally excluded to keep focus on the core functionality.
+
+### Database Integration
+
+JSON file storage was selected to avoid database setup overhead and keep the application easy to run locally.
+
+### Automated Testing
+
+Manual verification was prioritized due to the limited development time available.
+
+### Advanced Architecture
+
+Controllers, services, and enterprise patterns were intentionally minimized to maintain simplicity and readability.
+
+### State Management Libraries
+
+React local state was sufficient for the scope of this application.
+
+---
+
+## Known Limitations
+
+* JSON storage is not designed for high-concurrency environments.
+* Validation is implemented manually rather than through a schema validation library.
+* No pagination for large expense datasets.
+* Error handling is intentionally lightweight.
+* No authentication or user accounts.
+
+---
 
 ## Practical Test Notes
 
-- This submission focuses on correctness, readability, and fast local setup.
-- Code is intentionally simple and compact to fit practical-test time limits.
-- The app is structured to be easily extensible (DB, auth, tests, stronger API contracts) in a next iteration.
+This project prioritizes:
+
+* Correctness
+* Simplicity
+* Readability
+* Fast local setup
+* Easy evaluation
+
+The solution was intentionally designed to satisfy all stated requirements while remaining compact, maintainable, and easy to understand within the constraints of a practical software engineering assessment.
