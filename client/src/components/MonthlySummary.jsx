@@ -30,6 +30,7 @@ export default function MonthlySummary({ expenses }) {
   );
 
   const hasExpensesThisMonth = total > 0;
+  const hasAnyExpenses = (expenses || []).length > 0;
 
   return (
     <section className="monthly-summary">
@@ -54,7 +55,9 @@ export default function MonthlySummary({ expenses }) {
         </div>
       ) : (
         <p className="monthly-summary__empty">
-          No expenses recorded this month.
+          {hasAnyExpenses
+            ? 'No expenses recorded this month.'
+            : 'No expenses found. Add your first expense.'}
         </p>
       )}
     </section>

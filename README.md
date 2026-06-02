@@ -2,6 +2,17 @@
 
 Full-stack personal expense tracker built for a time-boxed practical test.
 
+## What I Built (and Why)
+
+This app supports the core “expense tracker” workflow end-to-end with a deliberately small surface area:
+
+- **Add / Edit / Delete expenses**: A single-page UI that captures `title`, `amount`, `category`, `date`, and optional `note`.
+- **Validation on both client and server**: Prevents invalid data from ever being written to disk (important when using file storage).
+- **Filters (applied together)**: Category, title search (partial + case-insensitive), and a date range filter for quick review.
+- **Current-month summary**: A simple month-to-date view showing total spend and category breakdown, implemented via `reduce()`.
+
+The goal was to deliver a reviewable, runnable submission quickly, without introducing extra frameworks or architecture that don’t add value in a practical test.
+
 ## Tech Stack
 
 - **Frontend:** React + Vite
@@ -78,6 +89,21 @@ Base URL: `http://localhost:5000/api/expenses`
 - `POST /` - create expense
 - `PUT /:id` - update expense
 - `DELETE /:id` - delete expense
+
+## Data Model
+
+Each expense uses this shape:
+
+```json
+{
+  "id": "uuid",
+  "title": "Weekly groceries",
+  "amount": 87.45,
+  "category": "Food",
+  "date": "2026-05-28",
+  "note": "Optional text"
+}
+```
 
 ## What Is Implemented
 

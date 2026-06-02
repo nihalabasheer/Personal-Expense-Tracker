@@ -135,34 +135,74 @@ export default function App() {
   return (
     <div className="app">
       <header className="app__header">
-        <h1>Personal Expense Tracker</h1>
+        <div className="app__brand">
+          <h1 className="app__title">ExpenseSmart</h1>
+          <p className="app__tagline">Track Today, Save Tomorrow</p>
+        </div>
       </header>
 
-      <main className="app__main">
-        {error ? <div className="app__error">{error}</div> : null}
-        {loading ? <div className="app__loading">Loading…</div> : null}
+      <main className="dashboard">
+        <aside className="dashboard__sidebar">
+          <MonthlySummary expenses={expenses} />
+        </aside>
 
-        <Filters filters={filters} onChange={setFilters} />
+        <section className="dashboard__content">
+          {error ? <div className="app__error">{error}</div> : null}
+          {loading ? <div className="app__loading">Loading…</div> : null}
 
-        <MonthlySummary expenses={expenses} />
+          <section className="card">
+            <h2 className="card__title">Add Expense</h2>
+            <ExpenseForm
+              editingExpense={null}
+              onAdd={handleAddExpense}
+              onUpdate={handleUpdateExpense}
+              onCancelEdit={handleCancelEdit}
+              disabled={loading}
+            />
+          </section>
 
-        <ExpenseForm
-          editingExpense={editingExpense}
-          onAdd={handleAddExpense}
-          onUpdate={handleUpdateExpense}
-          onCancelEdit={handleCancelEdit}
-          disabled={loading}
-        />
+          <section className="card">
+            <h2 className="card__title">Filters</h2>
+            <Filters filters={filters} onChange={setFilters} />
+          </section>
 
-        <ExpenseList
-          expenses={visibleExpenses}
-          onEdit={handleStartEdit}
-          onDelete={handleDeleteExpense}
-          hasFilters={
-            !!(filters.search || filters.category || filters.fromDate || filters.toDate)
-          }
-        />
+          <section className="card">
+            <h2 className="card__title">Expenses</h2>
+            <ExpenseList
+              expenses={visibleExpenses}
+              onEdit={handleStartEdit}
+              onDelete={handleDeleteExpense}
+              hasFilters={
+                !!(
+                  filters.search ||
+                  filters.category ||
+                  filters.fromDate ||
+                  filters.toDate
+                )
+              }
+            />
+          </section>
+        </section>
       </main>
+
+      {editingExpense && (
+        <div className="modal-backdrop" role="presentation">
+          <div className="modal" role="dialog" aria-modal="true">
+            <header className="modal__header">
+              <h2>Edit Expense</h2>
+            </header>
+            <div className="modal__body">
+              <ExpenseForm
+                editingExpense={editingExpense}
+                onAdd={handleAddExpense}
+                onUpdate={handleUpdateExpense}
+                onCancelEdit={handleCancelEdit}
+                disabled={loading}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

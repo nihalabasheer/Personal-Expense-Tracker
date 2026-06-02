@@ -112,8 +112,6 @@ export default function ExpenseForm({
 
   return (
     <section className="expense-form">
-      <h2>{isEditMode ? 'Edit Expense' : 'Add Expense'}</h2>
-
       <form onSubmit={handleSubmit}>
         <div className="field">
           <label htmlFor="title">Title</label>

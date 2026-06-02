@@ -31,8 +31,6 @@ export default function Filters({ filters, onChange }) {
 
   return (
     <section className="filters">
-      <h2>Filters</h2>
-
       <div className="filters__row">
         <div className="filters__field">
           <label htmlFor="filter-title">Title Search</label>

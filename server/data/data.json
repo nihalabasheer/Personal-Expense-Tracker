@@ -1,17 +1,9 @@
 {
   "expenses": [
     {
-      "id": "1",
-      "title": "Weekly groceries",
-      "amount": 87.45,
-      "category": "Food",
-      "date": "2026-05-28",
-      "note": "Supermarket run"
-    },
-    {
       "id": "2",
       "title": "Bus pass",
-      "amount": 45,
+      "amount": 50,
       "category": "Transport",
       "date": "2026-05-01",
       "note": "Monthly transit card"
@@ -25,14 +17,6 @@
       "note": ""
     },
     {
-      "id": "4",
-      "title": "Electric bill",
-      "amount": 120.3,
-      "category": "Utilities",
-      "date": "2026-05-20",
-      "note": "May billing cycle"
-    },
-    {
       "id": "5",
       "title": "Running shoes",
       "amount": 89,
@@ -43,10 +27,42 @@
     {
       "id": "a8dfdafb-a360-48f3-8b4e-1a305bc78f90",
       "title": "Movies",
-      "amount": 500,
+      "amount": 700,
       "category": "Entertainment",
       "date": "2026-06-02",
       "note": ""
+    },
+    {
+      "id": "1db84627-42f6-41e7-aba1-e39e2bf0863b",
+      "title": "Grocery Shopping",
+      "amount": 1800,
+      "category": "Food",
+      "date": "2026-06-02",
+      "note": "Monthly groceries"
+    },
+    {
+      "id": "0ccd5e6a-eb52-492c-9b6c-5a5a0f81f987",
+      "title": "Petrol Refill",
+      "amount": 1500,
+      "category": "Transport",
+      "date": "2026-06-02",
+      "note": "Bike fuel"
+    },
+    {
+      "id": "7ca4dae7-9948-4849-9d8f-70351c9a21b1",
+      "title": "Electricity Bill",
+      "amount": 2200,
+      "category": "Bills",
+      "date": "2026-05-31",
+      "note": "May Electricity Bill"
+    },
+    {
+      "id": "330bd91d-716d-48e2-b412-dde51e7811f9",
+      "title": "Netflix Subscription",
+      "amount": 649,
+      "category": "Entertainment",
+      "date": "2026-06-01",
+      "note": "Monthly subscription"
     }
   ]
 }
